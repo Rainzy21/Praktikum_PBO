@@ -1,5 +1,15 @@
 from abc import ABC, abstractmethod
 from dataclasses import dataclass
+import logging
+
+# Konfigurasi dasar: Semua log level INFO ke atas akan ditampilkan
+# Format: Waktu - Level - Nama Kelas/Fungsi - Pesan
+logging.basicConfig(
+    level=logging.INFO,
+    format='%(asctime)s - %(levelname)s - %(name)s - %(message)s'
+) 
+# Tambahkan logger untuk kelas yang akan kita gunakan
+LOGGER = logging.getLogger('Checkout')
 
 @dataclass
 class Order:
@@ -28,7 +38,7 @@ class EmailNotifier(INotificationService):
     def send(self, order: Order):
         print(f"Notif: Mengirim email konfirmasi ke {order.customer_name}.")
         
-class CheckoutService: 
+class CheckoutService:
     """
     Kelas high-level untuk mengkoordinasi proses transaksi pembayaran.
     
@@ -55,19 +65,21 @@ class CheckoutService:
         Returns:
             bool: True jika checkout sukses, False jika gagal.
         """
-        print(f"Memulai checkout untuk {order.customer_name}. Total: {order.total_price}")
-        payment_success = self.payment_processor.process(order) 
+        # Logging alih-alih print()
+        LOGGER.info(f"Memulai checkout untuk {order.customer_name}. Total: {order.total_price}")
+        payment_success = self.payment_processor.process(order)
         
         if payment_success:
             order.status = "paid"
-            self.notifier.send(order) 
-            print("Checkout Sukses. Status pesanan: PAID.")
+            self.notifier.send(order)
+            LOGGER.info("Checkout Sukses. Status pesanan: PAID.")
             return True
         else:
-            print("Pembayaran gagal. Transaksi dibatalkan.")
+            # Gunakan level ERROR/WARNING untuk masalah
+            LOGGER.error("Pembayaran gagal. Transaksi dibatalkan.")
             return False
 
-# --- Main Program (Sama seperti sebelumnya) ---
+# --- Main Program ---
 andi_order = Order("Andi", 500000)
 email_service = EmailNotifier()
 
