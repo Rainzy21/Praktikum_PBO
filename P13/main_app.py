@@ -10,7 +10,6 @@ class PosApp:
     """Kelas Orchestrator (Aplikasi Utama). Hanya mengkoordinasi flow dan menerapkan DI."""
     
     def __init__(self, repository: ProductRepository, payment_processor: IPaymentProcessor):
-        # INJEKSI DEPENDENSI DI SINI
         self.repository = repository
         self.payment_processor = payment_processor
         self.cart = ShoppingCart()
@@ -80,15 +79,14 @@ if __name__ == "__main__":
     # Perhatikan: Kita TIDAK mengubah kode di dalam kelas PosApp sama sekali.
     app = PosApp(repository=repo, payment_processor=payment_method)
     
-    # Loop CLI
     while True:
-        print("\nMenu Kasir:")
+        print("\n--- MENU KASIR (Mode: DEBIT) ---")
         print("1. Tampilkan Produk")
         print("2. Tambah ke Keranjang")
         print("3. Checkout")
         print("4. Keluar")
         
-        choice = input("Pilih opsi (1-4): ")
+        choice = input("Pilih (1-4): ")
         
         if choice == "1":
             app._display_menu()
@@ -97,7 +95,7 @@ if __name__ == "__main__":
         elif choice == "3":
             app._handle_checkout()
         elif choice == "4":
-            LOGGER.info("Aplikasi dihentikan.")
+            LOGGER.info("Bye bye.")
             break
         else:
-            LOGGER.warning("Pilihan tidak valid.")
+            LOGGER.warning("Menu tidak tersedia.")

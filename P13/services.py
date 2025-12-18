@@ -20,9 +20,10 @@ class CashPayment(IPaymentProcessor):
 # --- IMPLEMENTASI 2: DEBIT CARD (JAWABAN LATIHAN MANDIRI) ---
 class DebitCardPayment(IPaymentProcessor):
     def process(self, amount: float) -> bool:
-        LOGGER.info("Mengubungkan ke bank...")
-        LOGGER.info(f"Memproses pembayaran DEBIT sejumlah: Rp{amount:,.0f}")
-        LOGGER.info("Status: APPROVED (Saldo Terpotong)")
+        # Simulasi logika kartu debit
+        LOGGER.info("System: Menghubungkan ke Gateway Bank...")
+        LOGGER.info(f"Bank: Memproses pemotongan saldo sebesar Rp{amount:,.0f}")
+        LOGGER.info("Bank: Transaksi APPROVED.")
         return True
 
 # --- SERVICE KERANJANG BELANJA ---
