@@ -1,0 +1,7 @@
+=== LAPORAN AKTIVITAS RENTAL KONSOLE ===
+
+[21/10/2025 21:55] Andi menyewa PlayStation 5 pada 21/10/2025 21:55
+[21/10/2025 21:55] Budi gagal menyewa PlayStation 5 karena sedang disewa.
+[21/10/2025 21:55] Andi mengembalikan PlayStation 5 setelah 0 jam.
+[21/10/2025 21:55] Budi menyewa PlayStation 5 pada 21/10/2025 21:55
+[21/10/2025 21:55] Budi mengembalikan PlayStation 5 setelah 0 jam.
