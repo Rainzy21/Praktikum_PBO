@@ -48,10 +48,10 @@ class CheckoutService: # Tanggung jawab tunggal: Mengkoordinasikan Checkout
         """
         Menginisialisasi CheckOutService dengan depedensi yang diperlukan.
     
-         Args:
+        Args:
             payment_processort (IPaymentProcessor): Implementasi interface pembayaran.
             notifier (INotificationService): Implementsi interface notifikasi.
-         """
+        """
         self.payment_processor = payment_processor
         self.notifier = notifier
         
